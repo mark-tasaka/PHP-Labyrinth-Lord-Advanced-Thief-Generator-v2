@@ -1,0 +1,508 @@
+<?php
+
+function roll3D6()
+{
+    
+    $die1 = rand(1, 6);
+    $die2 = rand(1, 6);
+    $die3 = rand(1, 6);
+
+    return $die1 + $die2 + $die3;
+}
+
+
+function roll4D6()
+{
+    $abilityScores = 0;
+
+    $die1 = rand(1, 6);
+    $die2 = rand(1, 6);
+    $die3 = rand(1, 6);
+    $die4 = rand(1, 6);
+
+    $dieRollArray = array($die1, $die2, $die3, $die4);
+
+    rsort($dieRollArray);
+
+    for($i = 0; $i < 3; ++$i)
+    {
+        $abilityScores += $dieRollArray[$i];
+    }
+
+    return $abilityScores;
+
+}
+
+
+function roll5D6()
+{
+    $abilityScores = 0;
+
+    $die1 = rand(1, 6);
+    $die2 = rand(1, 6);
+    $die3 = rand(1, 6);
+    $die4 = rand(1, 6);
+    $die5 = rand(1, 6);
+
+    $dieRollArray = array($die1, $die2, $die3, $die4, $die5);
+
+    rsort($dieRollArray);
+
+    for($i = 0; $i < 3; ++$i)
+    {
+        $abilityScores += $dieRollArray[$i];
+    }
+
+    return $abilityScores;
+
+}
+
+
+function rollD5D6D7()
+{
+    
+    $die1 = rand(1, 5);
+    $die2 = rand(1, 6);
+    $die3 = rand(1, 7);
+
+    return $die1 + $die2 + $die3;
+}
+
+
+function roll2D6Plus6()
+{
+    
+    $die1 = rand(1, 6);
+    $die2 = rand(1, 6);
+
+    return $die1 + $die2 + 6;
+}
+
+
+function roll1D6Plus12()
+{
+    
+    $die1 = rand(1, 6);
+
+    return $die1 + 12;
+}
+
+
+
+function rollAbilityScores($input)
+{
+    $abilityScores = 0;
+
+    //Roll 3d6
+    if($input == 1)
+    {
+        $abilityScores = roll3D6();
+    }
+    
+    //Roll 4d6, drop the lowest
+    if($input == 2)
+    {
+        $abilityScores = roll4D6();
+    }
+
+    //Roll 5d6, use the three highest
+    if($input == 3)
+    {
+        $abilityScores = roll5D6();
+    }
+    
+    //Roll 5d6, use the three highest
+    if($input == 4)
+    {
+        $abilityScores = roll2D6Plus6();
+    }
+    
+    //Roll 2d6 + 6
+    if($input == 5)
+    {
+        $abilityScores = roll1D6Plus12();
+    }
+
+
+    return $abilityScores;
+}
+
+function generationMethod ($abilityScore)
+{
+    $dice = array(0, 0, 0, 0);
+    
+    if($abilityScore == 1)
+    {
+        $dice = array(6, 3, 0, 0);
+    }
+    
+    if($abilityScore == 2)
+    {
+        $dice = array(6, 4, 1, 0);
+    }
+    
+    if($abilityScore == 3)
+    {
+        $dice = array(6, 2, 0, 6);
+    }
+    
+    if($abilityScore == 4)
+    {
+        $dice = array(8, 2, 0, 2);
+    }
+    
+    
+    if($abilityScore == 5)
+    {
+        $dice = array(7, 2, 0, 4);
+    }
+    
+    return $dice;
+}
+
+function generationMesssage ($abilityScore)
+{
+    $message = "";
+    
+    if($abilityScore == 1)
+    {
+        $message = "Ability Score Generation: 3d6;";
+    }
+    
+    if($abilityScore == 2)
+    {
+        $message = "Ability Score Generation: 4d6, drop the lowest;";
+    }
+    
+    if($abilityScore == 3)
+    {
+        $message = "Ability Score Generation: 5d6, use the three highest rolls;";
+    }
+    
+    if($abilityScore == 4)
+    {
+        $message = "Ability Score Generation: 2d6+6;";
+    }
+    
+    
+    if($abilityScore == 5)
+    {
+        $message = "Ability Score Generation: 1d6+12;";
+    }
+    
+    return $message;
+}
+
+
+function getAbilityModifier($score)
+{
+
+    if($score == 3)
+        {
+            $modifier = -3;
+        }
+    else if($score >=4 && $score <=5)
+          {
+            $modifier = -2;
+        }
+    else if($score >=6 && $score <=8)
+        {
+            $modifier = -1;
+        }
+    else if($score >=9 && $score <=12)
+        {
+            $modifier = 0;
+        }
+    else if($score >=13 && $score <=15)
+            {
+                $modifier = 1;
+            }        
+    else if($score >=16 && $score <=17)
+                {
+                    $modifier = 2;
+                }            
+    else if($score == 18)
+    {
+        $modifier = 3;
+    }            
+    else if($score == 19)
+    {
+        $modifier = 4;
+    }
+
+    return $modifier;
+}
+
+function getModSign($mod)
+{
+    if($mod >= 0)
+    {
+        return '+' . $mod;
+    }
+    else
+    {
+        return $mod;
+    }
+}
+
+
+function demiHumanStrengthRange($abilityScore, $species)
+{
+    if($species === "Dwarf")
+    {
+        if($abilityScore < 8)
+        {
+            $abilityScore = 8;
+        }
+    }
+    
+    if($species === "Gnome")
+    {
+        if($abilityScore < 6)
+        {
+            $abilityScore = 6;
+        }
+    }
+    
+    if($species === "Halfling")
+    {
+        if($abilityScore < 6)
+        {
+            $abilityScore = 6;
+        }
+        
+        if($abilityScore > 17)
+        {
+            $abilityScore = 17;
+        }
+    }
+    
+    if($species === "Half-Orc")
+    {
+        if($abilityScore < 6)
+        {
+            $abilityScore = 6;
+        }
+    }
+
+    return $abilityScore;
+
+}
+
+function demiHumanDexterityRange($abilityScore, $species)
+{
+    if($species === "Dwarf")
+    {
+        if($abilityScore > 17)
+        {
+            $abilityScore = 17;
+        }
+    }
+    
+    if($species === "Elf")
+    {
+        if($abilityScore < 6)
+        {
+            $abilityScore = 6;
+        }
+        $abilityScore += 1;
+    }
+    
+    if($species === "Halfling")
+    {
+        if($abilityScore < 8)
+        {
+            $abilityScore = 8;
+        }
+        $abilityScore += 1;
+    }
+    
+    if($species === "Half-Elf")
+    {
+        if($abilityScore < 6)
+        {
+            $abilityScore = 6;
+        }
+    }
+    
+    if($species === "Half-Orc")
+    {
+        if($abilityScore > 17)
+        {
+            $abilityScore = 17;
+        }
+    }
+
+    return $abilityScore;
+
+}
+
+
+function demiHumanConstitutionRange($abilityScore, $species)
+{
+    if($species === "Dwarf")
+    {
+        if($abilityScore < 11)
+        {
+            $abilityScore = 11;
+        }
+        $abilityScore +=1;
+    }
+    
+    if($species === "Elf")
+    {
+        if($abilityScore < 6)
+        {
+            $abilityScore = 6;
+        }
+    }
+    
+    if($species === "Gnome")
+    {
+        if($abilityScore < 8)
+        {
+            $abilityScore = 8;
+        }
+    }
+    
+    if($species === "Halfling")
+    {
+        if($abilityScore < 10)
+        {
+            $abilityScore = 10;
+        }
+    }
+    
+    if($species === "Half-Elf")
+    {
+        if($abilityScore < 6)
+        {
+            $abilityScore = 6;
+        }
+    }
+    
+    if($species === "Half-Orc")
+    {
+        if($abilityScore < 12)
+        {
+            $abilityScore = 12;
+        }
+        $abilityScore +=1;
+    }
+
+    return $abilityScore;
+
+}
+
+
+function demiHumanIntelligenceRange($abilityScore, $species)
+{   
+    if($species === "Elf")
+    {
+        if($abilityScore < 8)
+        {
+            $abilityScore = 8;
+        }
+    }
+    
+    if($species === "Gnome")
+    {
+        if($abilityScore < 7)
+        {
+            $abilityScore = 7;
+        }
+    }
+    
+    if($species === "Halfling")
+    {
+        if($abilityScore < 6)
+        {
+            $abilityScore = 6;
+        }
+    }
+    
+    if($species === "Half-Elf")
+    {
+        if($abilityScore < 4)
+        {
+            $abilityScore = 4;
+        }
+    }
+    
+    if($species === "Half-Orc")
+    {
+        if($abilityScore > 17)
+        {
+            $abilityScore = 17;
+        }
+    }
+
+    return $abilityScore;
+
+}
+
+
+function demiHumanWisdomRange($abilityScore, $species)
+{   
+    if($species === "Halfling")
+    {
+        if($abilityScore > 17)
+        {
+            $abilityScore = 17;
+        }
+    }
+    
+    if($species === "Half-Elf")
+    {
+        if($abilityScore < 4)
+        {
+            $abilityScore = 4;
+        }
+    }
+    
+    if($species === "Half-Orc")
+    {
+        if($abilityScore > 14)
+        {
+            $abilityScore = 14;
+        }
+    }
+
+    return $abilityScore;
+
+}
+
+function demiHumanCharismaRange($abilityScore, $species)
+{   
+    
+    if($species === "Dwarf")
+    {
+        if($abilityScore > 16)
+        {
+            $abilityScore = 16;
+        }
+    }
+
+    if($species === "Gnome")
+    {
+        if($abilityScore < 8)
+        {
+            $abilityScore = 8;
+        }
+    }
+    
+    if($species === "Half-Orc")
+    {
+        if($abilityScore > 12)
+        {
+            $abilityScore = 12;
+        }
+    }
+
+    return $abilityScore;
+
+}
+
+
+
+?>
