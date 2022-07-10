@@ -15,13 +15,13 @@ function thiefMessage ($level)
     }
     else if($level == 9)
     {
-        $message = "80% probability of reading languages (any non-magical writings).
+        $message = "80% probability of reading languages (any non-magical writings).<br/>
                     Can establish a thief's den, with 2d6 1st level thief apprentices.";
     }
     else
     {
-        $message = "80% probability of reading languages (any non-magical writings).
-                    Can establish a thief's den, with 2d6 1st level thief apprentices.
+        $message = "80% probability of reading languages (any non-magical writings).<br/>
+                    Can establish a thief's den, with 2d6 1st level thief apprentices.<br/>
                     Can read and cast magic from magic-user/elf scrolls with 90% accuracy.";
     }
     
@@ -397,26 +397,291 @@ function getHideShadows($level)
 
 }
 
-function getHearNoise($level)
+function getHearNoise($level, $species)
 {
-    if($level <= 2)
+    if($species == "Elf")
     {
-        return "1-2";
-    }
-    else if($level >= 3 && $level <= 5)
-    {
-        return "1-3";
-    }
-    else if($level >= 6 && $level <= 9)
-    {
-        return "1-4";
+        if($level <= 2)
+        {
+            return "1-3";
+        }
+        else if($level >= 3 && $level <= 5)
+        {
+            return "1-4";
+        }
+        else
+        {
+            return "1-5";
+        }
+
     }
     else
     {
-        return "1-5";
+        if($level <= 2)
+        {
+            return "1-2";
+        }
+        else if($level >= 3 && $level <= 5)
+        {
+            return "1-3";
+        }
+        else if($level >= 6 && $level <= 9)
+        {
+            return "1-4";
+        }
+        else
+        {
+            return "1-5";
+        }
     }
 
 }
+
+
+function adjustPickLocks ($species)
+{
+    $adjust = 0;
+    
+    if($species === "Dwarf")
+    {
+        $adjust = 7;
+    }
+    else if($species === "Elf")
+    {
+        $adjust = -5;
+    }
+    else if($species === "Gnome")
+    {
+        $adjust = 5;
+    }
+    else if($species === "Halfling")
+    {
+        $adjust = 5;
+    }
+    else if($species === "Half-Elf")
+    {
+        $adjust = 0;
+    }
+    else if($species === "Half-Orc")
+    {
+        $adjust = 5;
+    }
+    else
+    {
+        $adjust = 0;
+    }
+    
+    return $adjust;
+    
+}
+
+
+function adjustFindRemoveTraps ($species)
+{
+    $adjust = 0;
+    
+    if($species === "Dwarf")
+    {
+        $adjust = 10;
+    }
+    else if($species === "Elf")
+    {
+        $adjust = 0;
+    }
+    else if($species === "Gnome")
+    {
+        $adjust = 7;
+    }
+    else if($species === "Halfling")
+    {
+        $adjust = 5;
+    }
+    else if($species === "Half-Elf")
+    {
+        $adjust = 0;
+    }
+    else if($species === "Half-Orc")
+    {
+        $adjust = 5;
+    }
+    else
+    {
+        $adjust = 0;
+    }
+    
+    return $adjust;
+    
+}
+
+
+
+function adjustPickPockets ($species)
+{
+    $adjust = 0;
+    
+    if($species === "Dwarf")
+    {
+        $adjust = 0;
+    }
+    else if($species === "Elf")
+    {
+        $adjust = 5;
+    }
+    else if($species === "Gnome")
+    {
+        $adjust = 0;
+    }
+    else if($species === "Halfling")
+    {
+        $adjust = 5;
+    }
+    else if($species === "Half-Elf")
+    {
+        $adjust = 10;
+    }
+    else if($species === "Half-Orc")
+    {
+        $adjust = -5;
+    }
+    else
+    {
+        $adjust = 0;
+    }
+    
+    return $adjust;
+    
+}
+
+
+function adjustMoveSilently ($species)
+{
+    $adjust = 0;
+    
+    if($species === "Dwarf")
+    {
+        $adjust = 0;
+    }
+    else if($species === "Elf")
+    {
+        $adjust = 7;
+    }
+    else if($species === "Gnome")
+    {
+        $adjust = 5;
+    }
+    else if($species === "Halfling")
+    {
+        $adjust = 10;
+    }
+    else if($species === "Half-Elf")
+    {
+        $adjust = 0;
+    }
+    else if($species === "Half-Orc")
+    {
+        $adjust = 0;
+    }
+    else
+    {
+        $adjust = 0;
+    }
+    
+    return $adjust;
+    
+}
+
+
+function adjustClimbWalls ($species)
+{
+    $adjust = 0;
+    
+    if($species === "Dwarf")
+    {
+        $adjust = -10;
+    }
+    else if($species === "Elf")
+    {
+        $adjust = 0;
+    }
+    else if($species === "Gnome")
+    {
+        $adjust = -15;
+    }
+    else if($species === "Halfling")
+    {
+        $adjust = -15;
+    }
+    else if($species === "Half-Elf")
+    {
+        $adjust = 0;
+    }
+    else if($species === "Half-Orc")
+    {
+        $adjust = 5;
+    }
+    else
+    {
+        $adjust = 0;
+    }
+    
+    return $adjust;
+    
+}
+
+
+
+function adjustHideShadow ($species)
+{
+    $adjust = 0;
+    
+    if($species === "Dwarf")
+    {
+        $adjust = 0;
+    }
+    else if($species === "Elf")
+    {
+        $adjust = 10;
+    }
+    else if($species === "Gnome")
+    {
+        $adjust = 5;
+    }
+    else if($species === "Halfling")
+    {
+        $adjust = 10;
+    }
+    else if($species === "Half-Elf")
+    {
+        $adjust = 5;
+    }
+    else if($species === "Half-Orc")
+    {
+        $adjust = 0;
+    }
+    else
+    {
+        $adjust = 0;
+    }
+    
+    return $adjust;
+    
+}
+
+
+function hearNoiseAdjust ($species, $level)
+{
+    
+    $adjust = 0;
+    
+    if($species === "Elf" && $level <= 9)
+    {
+        $adjust = 1;
+    }
+    
+    return $adjust;
+    
+}
+
 
 
 ?>

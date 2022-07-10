@@ -302,6 +302,7 @@ body{
     top: 1160px;
     left: 35px;
     font-size: 0.5em;
+    width: 380px;
 }
 
 
@@ -622,10 +623,10 @@ body{
 
 #classAbilities{
     position:absolute;
-    top: 970px;
-    left: 45px;
-	font-size: 0.55em;
-    width: 580px;
+    top: 950px;
+    left: 35px;
+	font-size: 0.6em;
+    width: 395px;
 }
 
 
@@ -824,93 +825,53 @@ body{
 }
 
 
-#backstab{
-    position:absolute;
-    top: 686px;
-    left: 505px;
-    font-size: 0.8em;
-}
-
-#sneakSilently{
-    position:absolute;
-    top: 716px;
-    left: 505px;
-    font-size: 0.8em;
-}
-
-#hideInShadows{
-    position:absolute;
-    top: 746px;
-    left: 505px;
-    font-size: 0.8em;
-}
-
-#pickPocket{
-    position:absolute;
-    top: 776px;
-    left: 505px;
-    font-size: 0.8em;
-}
-
-#climb{
-    position:absolute;
-    top: 806px;
-    left: 505px;
-    font-size: 0.8em;
-}
 
 #pickLock{
     position:absolute;
-    top: 836px;
-    left: 505px;
+    top: 963px;
+    left: 585px;
     font-size: 0.8em;
 }
 
 #findTrap{
     position:absolute;
-    top: 866px;
-    left: 505px;
+    top: 993px;
+    left: 585px;
     font-size: 0.8em;
 }
 
-#disableTrap{
+
+#pickPockets{
     position:absolute;
-    top: 896px;
-    left: 505px;
+    top: 1022px;
+    left: 585px;
     font-size: 0.8em;
 }
 
-#forgeDoc{
+#moveSilently{
     position:absolute;
-    top: 926px;
-    left: 505px;
+    top: 1051px;
+    left: 585px;
     font-size: 0.8em;
 }
 
-#disguiseSelf{
+#climbWall{
     position:absolute;
-    top: 956px;
-    left: 505px;
+    top: 1081px;
+    left: 585px;
     font-size: 0.8em;
 }
 
-#readLanguages{
+#hideShadow{
     position:absolute;
-    top: 986px;
-    left: 505px;
+    top: 1128px;
+    left: 585px;
     font-size: 0.8em;
 }
 
-#handlePoison{
+#hearNoise{
     position:absolute;
-    top: 1016px;
-    left: 505px;
-    font-size: 0.8em;
-}
-
-#castSpellScroll{
-    position:absolute;
-    top: 1055px;
-    left: 505px;
+    top: 1158px;
+    left: 585px;
     font-size: 0.8em;
 }
