@@ -4,6 +4,19 @@ The Labyrinth Lord Advanced Companion Thief Character Generator Version 2 is the
 
 --------------
 
+A live version of the Labyrinth Lord Advanced Companion Thief Character Generator Version 2 is available at:
+
+https://www.oldschooladventures.org/ll/classes2/thief/
+
+---------
+
+
+
+Update 1.01: 2022-07-10
+
+UPdates to thief.php, thief.css. thief.png, classDetails.php, demiHumans.php, gear.php, thiefSkills.php, weapons.php, and xp.php. A link to the live version of the Labyrinth Lord Advanced Companion Thief Character Generator Version 2 has been added.
+
+
 
 Initial commmit: 2022-07-07
 
